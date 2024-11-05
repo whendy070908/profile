@@ -1,1 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trexer의 포트폴리오</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 기본 스타일 */
+        :root {
+            --background-color: #121212;
+            --text-color: #f5f5f5;
+            --card-bg-color: #333;
+            --highlight-color: #4e54c8;
+            --link-hover-color: #8f94fb;
+            --badge-bg-color: #3b82f6;
+            --typing-text-color: #f5f5f5; /* 기본 텍스트 색 */
+            --intro-text-color: #f5f5f5; /* intro 텍스트 색상 */
+        }
 
+        .light-mode {
+            --background-color: #e8e8e8; /* 밝은 회색 배경 */
+            --text-color: #111111; /* 선명한 검정 텍스트 */
+            --card-bg-color: #ffffff; /* 카드 배경을 흰색으로 */
+            --highlight-color: #00509e; /* 강조 색상 */
+            --link-hover-color: #003f7d; /* 강조 색상 호버 */
+            --badge-bg-color: #00509e;
+            --typing-text-color: #111111; /* 라이트 모드 타이핑 텍스트 색상 */
+            --intro-text-color: #111111; /* 라이트 모드 intro 텍스트 색상 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        /* 모드 전환 아이콘 버튼 */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        /* 소개 섹션 */
+        #intro {
+            background: url('https://source.unsplash.com/1600x900/?technology,code') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .intro-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--typing-text-color); /* 타이핑 텍스트 색상 */
+            background-color: transparent; /* 배경색 제거 */
+            text-shadow: none; /* 빛 번짐 효과 제거 */
+        }
+
+        .intro-content p {
+            color: var(--intro-text-color); /* intro 문장 색상 */
+            text-shadow: none;
+        }
+
+        /* 기술 스택 */
+        #skills {
+            background-color: var(--card-bg-color);
+        }
+
+        .tech-stack-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1em;
+            margin-top: 1rem;
+        }
+
+        .tech-stack span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--badge-bg-color);
+            color: #fff;
+            padding: 0.5em 1.2em;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-stack span:hover {
+            transform: scale(1.1);
+            background: var(--link-hover-color);
+        }
+
+        /* 프로젝트 섹션 */
+        #projects {
+            background-color: var(--card-bg-color);
+            padding: 2rem 0;
+        }
+
+        .project-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: #444;
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode .project-card {
+            background: #ffffff; /* 라이트 모드에서 더 밝은 카드 배경 */
+            color: #1a1a1a; /* 라이트 모드에서 카드 텍스트를 더 진한 색상 */
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            display: inline-block;
+            padding: 0.5em 1em;
+            color: var(--highlight-color);
+            border: 1px solid var(--highlight-color);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .project-card a:hover {
+            background: var(--highlight-color);
+            color: #fff;
+        }
+
+        /* 소셜 링크 & 저작권 */
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5em;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--highlight-color);
+            font-size: 1.5em;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--link-hover-color);
+            transform: scale(1.1);
+        }
+
+        /* 소셜 아이콘 밑줄 애니메이션 */
+        .social-icon::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--link-hover-color);
+            transition: width 0.3s ease;
+        }
+
+        .social-icon:hover::after {
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 다크/라이트 모드 전환 버튼 -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <i id="theme-icon" class="fas fa-sun"></i>
+</button>
+
+<!-- 소개 섹션 -->
+<section id="intro">
+    <div class="intro-content">
+        <h1>안녕하세요! 저는 <span id="intro-text"></span>입니다.</h1>
+        <p>코딩을 좋아하는 디스코드 봇 개발자, 심기현입니다.</p>
+    </div>
+</section>
+
+<!-- 기술 스택 섹션 -->
+<section id="skills">
+    <h2><i class="fas fa-code"></i> Skills</h2>
+    <div class="tech-stack-container">
+        <div class="tech-stack">
+            <span><i class="fab fa-html5"></i> HTML</span>
+            <span><i class="fab fa-css3-alt"></i> CSS</span>
+            <span><i class="fab fa-js-square"></i> JavaScript</span>
+            <span><i class="fab fa-python"></i> Python</span>
+            <span><i class="fab fa-react"></i> React</span>
+        </div>
+    </div>
+</section>
+
+<!-- 프로젝트 섹션 -->
+<section id="projects">
+    <h2><i class="fas fa-folder"></i> Projects</h2>
+    <div class="project-gallery">
+        <div class="project-card">
+            <h3>Discord MeZ</h3>
+            <p>디스코드의 여러 유틸리티봇 메즈.</p>
+            <a href="#" target="_blank">자세히 보기</a>
+        </div>
+        <div class="project-card">
+            <h3>링크 단축 api</h3>
+            <p>개발 완료 - 배포 X.</p>
+            <a href="#" target="_blank">자세히 보기</a>
+        </div>
+    </div>
+</section>
+
+<!-- 소셜 링크 및 저작권 -->
+<section id="social">
+    <div class="footer-container">
+        <footer>&copy; 2024 trexer. All rights reserved.</footer>
+        <div class="social-links">
+            <a href="https://github.com/whendy070908" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/gihyeon07x" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:me@gihyeon.dev" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://discord.com/users/853089001556934686" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 타이핑 효과 기능
+    const introText = document.getElementById("intro-text");
+    const phrases = ["trexer(웬디)", "무언가를 만드는걸 좋아하는 사람", "꾸준히 노력하는 사람"];
+    let currentPhrase = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+    let typingSpeed = 150;
+
+    function type() {
+        const fullText = phrases[currentPhrase];
+        
+        if (isDeleting) {
+            introText.textContent = fullText.substring(0, currentChar--);
+            typingSpeed = 50;
+            
+            if (currentChar < 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typingSpeed = 150;
+            }
+        } else {
+            introText.textContent = fullText.substring(0, currentChar++);
+            typingSpeed = 150;
+            
+            if (currentChar >= fullText.length) {
+                setTimeout(() => isDeleting = true, 600); // 1초 후에 삭제 시작
+                typingSpeed = 100;
+            }
+        }
+        
+        setTimeout(type, typingSpeed);
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        const icon = document.getElementById("theme-icon");
+        icon.classList.toggle("fa-sun");
+        icon.classList.toggle("fa-moon");
+    }
+
+    // 오른쪽 클릭 방지
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+    });
+
+    // F12 및 개발자 도구 접근 제한
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
+            (e.ctrlKey && (e.key === "U" || e.key === "S"))) {
+            e.preventDefault();
+        }
+    });
+
+    // 콘솔 열림 감지 및 새로고침
+    function detectDevTools(isOpen) {
+        if (isOpen) {
+            window.location.reload();
+        }
+    }
+
+    (function() {
+        const devtools = {
+            isOpen: false,
+            orientation: null
+        };
+        const threshold = 160;
+        const emitEvent = (isOpen, orientation) => {
+            window.dispatchEvent(new CustomEvent('devtoolschange', {
+                detail: {
+                    isOpen,
+                    orientation
+                }
+            }));
+        };
+        const check = ({ width, height }) => {
+            if (width > threshold || height > threshold) {
+                if (!devtools.isOpen || devtools.orientation !== orientation) {
+                    devtools.isOpen = true;
+                    devtools.orientation = width > height ? 'vertical' : 'horizontal';
+                    emitEvent(true, devtools.orientation);
+                    detectDevTools(true);
+                }
+            } else {
+                if (devtools.isOpen) {
+                    devtools.isOpen = false;
+                    devtools.orientation = null;
+                    emitEvent(false, null);
+                }
+            }
+        };
+        const orientation = window.outerWidth > window.outerHeight ? 'vertical' : 'horizontal';
+        check(orientation);
+    })();
+
+    document.addEventListener("DOMContentLoaded", () => type());
+</script>
+
+</body>
+</html>
