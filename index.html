@@ -243,6 +243,33 @@
             color: var(--text-color);
             font-size: 0.9em;
         }
+
+        /* 모바일 레이아웃 */
+        @media (max-width: 768px) {
+            .intro-content h1 {
+                font-size: 2em;
+            }
+
+            .project-card {
+                width: 100%; /* 카드가 전체 너비를 사용 */
+            }
+
+            .tech-stack-container, .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .theme-toggle {
+                font-size: 1.2rem;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -284,8 +311,13 @@
             <a href="#" target="_blank">자세히 보기</a>
         </div>
         <div class="project-card">
-            <h3>링크 단축 api</h3>
-            <p>개발 완료 / 배포 X.</p>
+            <h3>프로젝트 2</h3>
+            <p>프로젝트 설명 및 특징 요약입니다.</p>
+            <a href="#" target="_blank">자세히 보기</a>
+        </div>
+        <div class="project-card">
+            <h3>프로젝트 3</h3>
+            <p>프로젝트 설명 및 특징 요약입니다.</p>
             <a href="#" target="_blank">자세히 보기</a>
         </div>
     </div>
@@ -299,7 +331,7 @@
             <a href="https://github.com/whendy070908" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
             <a href="https://instagram.com/gihyeon07x" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
             <a href="mailto:me@gihyeon.dev" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
-            <a href="https://discord.com/users/853089001556934686" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
+            <a href="https://discord.com" target="_blank" class="social-icon"><i class="fab fa-discord"></i></a>
         </div>
     </div>
 </section>
