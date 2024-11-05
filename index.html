@@ -17,6 +17,7 @@
             --badge-bg-color: #3b82f6;
             --typing-text-color: #f5f5f5; /* 기본 텍스트 색 */
             --intro-text-color: #f5f5f5; /* intro 텍스트 색상 */
+            --cursor-color: #f5f5f5; /* 기본 커서 색상 */
         }
 
         .light-mode {
@@ -28,6 +29,7 @@
             --badge-bg-color: #00509e;
             --typing-text-color: #111111; /* 라이트 모드 타이핑 텍스트 색상 */
             --intro-text-color: #111111; /* 라이트 모드 intro 텍스트 색상 */
+            --cursor-color: #111111; /* 라이트 모드 커서 색상 */
         }
 
         * {
@@ -90,6 +92,20 @@
         .intro-content p {
             color: var(--intro-text-color); /* intro 문장 색상 */
             text-shadow: none;
+        }
+
+        /* 타이핑 커서 스타일 */
+        #cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--cursor-color);
+            margin-left: 2px;
+            animation: blink 0.7s steps(1) infinite; /* 커서 깜박임 */
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
         /* 기술 스택 */
@@ -239,7 +255,7 @@
 <!-- 소개 섹션 -->
 <section id="intro">
     <div class="intro-content">
-        <h1>안녕하세요! 저는 <span id="intro-text"></span>입니다.</h1>
+        <h1>안녕하세요! 저는 <span id="intro-text"></span><span id="cursor"></span>입니다.</h1>
         <p>코딩을 좋아하는 디스코드 봇 개발자, 심기현입니다.</p>
     </div>
 </section>
@@ -269,7 +285,7 @@
         </div>
         <div class="project-card">
             <h3>링크 단축 api</h3>
-            <p>개발 완료 - 배포 X.</p>
+            <p>개발 완료 / 배포 X.</p>
             <a href="#" target="_blank">자세히 보기</a>
         </div>
     </div>
@@ -314,7 +330,7 @@
             typingSpeed = 150;
             
             if (currentChar >= fullText.length) {
-                setTimeout(() => isDeleting = true, 600); // 1초 후에 삭제 시작
+                setTimeout(() => isDeleting = true, 1000); // 1초 후에 삭제 시작
                 typingSpeed = 100;
             }
         }
