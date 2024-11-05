@@ -296,8 +296,7 @@
             <span><i class="fab fa-css3-alt"></i> CSS</span>
             <span><i class="fab fa-js-square"></i> JavaScript</span>
             <span><i class="fab fa-python"></i> Python</span>
-            <span><i class="fab fa-react"></i> React</span>
-        </div>
+        <div>
     </div>
 </section>
 
@@ -334,7 +333,7 @@
 <script>
     // 타이핑 효과 기능
     const introText = document.getElementById("intro-text");
-    const phrases = ["Trexer(웬디)", "무언가를 만드는걸 좋아하는 사람", "꾸준히 노력하는 사람"];
+    const phrases = ["Trexer(웬디)", "만드는걸 좋아하는 사람", "꾸준히 노력하는 사람"];
     let currentPhrase = 0;
     let currentChar = 0;
     let isDeleting = false;
@@ -357,7 +356,7 @@
             typingSpeed = 150;
             
             if (currentChar >= fullText.length) {
-                setTimeout(() => isDeleting = true, 6000); // 1초 후에 삭제 시작
+                setTimeout(() => isDeleting = true, 6000); // 0.6초 후에 삭제 시작
                 typingSpeed = 100;
             }
         }
